@@ -7,8 +7,6 @@
 		props: ['options'],
 		
 		mounted () {
-			// const dates = this.chartData.map(d => d.date).reverse();
-			// const totals = this.chartData.map(d => d.total).reverse();
 			this.renderChart(this.chartData, this.options);
 		}
 	}
