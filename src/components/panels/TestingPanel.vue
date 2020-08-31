@@ -1,20 +1,19 @@
 <template>
   <div class="pb-5">
     <h1 class="text-center box">On-Campus Testing</h1>
-    <v-container class="panel-wrap d-flex flex-row justify-space-around">
-      <div class="card-chart d-flex flex-column">
-        <v-card class="mr-5">
+    <v-container class="p-info d-flex flex-row justify-space-around">
+      <!-- <div class="card-chart d-flex flex-column"> -->
+        <v-card height="100%" class="ml-5">
           <v-card-title>{{doughnutChart.title}}</v-card-title>
           <v-card-subtitle class="pb-0">{{doughnutChart.subtitle}}</v-card-subtitle>
             <doughnut-chart
-              id="doughnut-chart"
               :chart-data="doughnutChart.chartData"
               :options="doughnutChart.options"
               :label="doughnutChart.chartData.label">
             </doughnut-chart>
         </v-card>
-      </div>
-      <div>
+      <!-- </div> -->
+      <div class="mx-5">
         <h2 class="text-center pb-5">Reporting Period</h2>
         <DataTable/>
       </div>
@@ -55,6 +54,9 @@
               ],
             }]
           },
+          
+          // Doughnut Chart Options 
+          
           options: {
             cutoutPercentage: 65,
             responsive: true,
@@ -64,7 +66,7 @@
             },
             legend: {
               position: 'bottom',
-              labels: { boxWidth: 15, fontSize: 12, padding: 15 }
+              labels: { boxWidth: 15, fontSize: 12, padding: 10 }
             },
             plugins: {
               datalabels: { color:'#eee', font: { size: 16 }  }
@@ -72,7 +74,6 @@
           }
         },
 
-        // Doughnut Chart Options 
         
       }
     }
@@ -81,26 +82,5 @@
 </script>
 
 <style scoped>
-  .box {
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  }
-  #doughnut-chart {
-    height: 80%;
-  }
-  .card-chart {
-    width: 35%;
-  }
-  .panel-wrap {
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-  }
-  h1 {
-    background-color: #D5454F;
-    color: #fff;
-  }
-  div {
-    border: solid black 1px;
-  }
-  v-card {
-    width:35%;
-  }
+  
 </style>
