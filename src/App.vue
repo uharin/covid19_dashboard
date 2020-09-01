@@ -1,6 +1,6 @@
 <template>
-  <v-app >
-    <v-container class="wrapper">
+  <v-app>
+    <v-container fluid class="wrapper pa-0 ma-0 mx-auto">
       <CasePanel/>
       <TestingPanel/>
       <IsolationPanel/>
@@ -29,8 +29,9 @@
 
 <style>
   h1 {
-      background-color: #D5454F;
+      background-color: #bdc3c7;
       color: #fff;
+      text-shadow: 1px 1px #4d4c4ca4;
     }
   .box {
     box-shadow: 
@@ -45,7 +46,6 @@
       0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   }
   .wrapper {
-    width:980px;
-    min-width:900px;
+    width:850px;
   }
 </style>

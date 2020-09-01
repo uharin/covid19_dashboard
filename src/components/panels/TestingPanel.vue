@@ -1,22 +1,24 @@
 <template>
   <div class="pb-5">
-    <h1 class="text-center box">On-Campus Testing</h1>
-    <v-container class="p-info d-flex flex-row justify-space-around">
-      <!-- <div class="card-chart d-flex flex-column"> -->
-        <v-card height="100%" class="ml-5">
-          <v-card-title>{{doughnutChart.title}}</v-card-title>
-          <v-card-subtitle class="pb-0">{{doughnutChart.subtitle}}</v-card-subtitle>
+    <v-container class="pa-0 p-info">
+      <h1 class="text-center box">On-Campus Testing</h1>
+      <v-row no-gutters class="d-flex justify-space-around pa-4">
+        <v-col cols="12" sm="4" class="box px-4 pt-4">
+          <h4>{{doughnutChart.title}}</h4>
+          <p class="pb-0">{{doughnutChart.subtitle}}</p>
             <doughnut-chart
               :chart-data="doughnutChart.chartData"
               :options="doughnutChart.options"
-              :label="doughnutChart.chartData.label">
+              :label="doughnutChart.chartData.label"
+              :width="275" 
+              :height="275">
             </doughnut-chart>
-        </v-card>
-      <!-- </div> -->
-      <div class="mx-5">
-        <h2 class="text-center pb-5">Reporting Period</h2>
-        <DataTable/>
-      </div>
+        </v-col>
+        <v-col class="mx-5">
+          <h2 class="text-center py-5">Reporting Period</h2>
+          <DataTable/>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -62,11 +64,11 @@
             responsive: true,
             maintainAspectRatio: false,
             layout: {
-              padding: { left: 20, right: 20, top: 20, bottom: 30 }
+              padding: { left: 20, right: 20, top: 10, bottom: 30 }
             },
             legend: {
               position: 'bottom',
-              labels: { boxWidth: 15, fontSize: 12, padding: 10 }
+              labels: { boxWidth: 10, fontSize: 11, padding: 10 }
             },
             plugins: {
               datalabels: { color:'#eee', font: { size: 16 }  }
@@ -82,5 +84,4 @@
 </script>
 
 <style scoped>
-  
 </style>

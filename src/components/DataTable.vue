@@ -1,5 +1,4 @@
 <template>
-  <div class="d-flex flex-column">
     <v-data-table
       dense
       :headers="headers"
@@ -7,7 +6,6 @@
       :hide-default-footer="true"
       class="elevation-1">
     </v-data-table>
-  </div>
 </template>
 
 <script>

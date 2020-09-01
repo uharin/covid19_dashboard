@@ -1,27 +1,31 @@
 <template>
-  <div class="pb-5">
-    <h1 class="text-center box">Campus Case Tracker</h1>
-    <v-container class="p-info px-5 d-flex flex-row justify-space-around">
-      <div>
-        <h2 class="py-5 text-center">Information on {{information[chartIndex].name}}</h2>
-        <v-btn 
-          x-small
-          class="mr-3 mb-5"
-          v-for="(item, index) in information" 
-          :key="index"
-          v-on:click="updateChart(index)">{{information[index].name}}</v-btn>
-        <line-chart 
-          v-if="loaded"
-          class="mb-5 pa-2 box"
-          :chart-data="datacollection" 
-          :options="chartOptions" 
-          :label="information[chartIndex].name">
-        </line-chart>
-      </div>
-      <div>
-        <h2 class="text-center py-5">Case Data for Duquesne University</h2>
-        <InfoCard/>
-      </div>
+  <div class="py-5">
+    <v-container class="p-info pa-0">
+      <h1 class="text-center box">Campus Case Tracker</h1>
+      <v-row no-gutters class="d-flex justify-space-around pa-4">
+        <v-col cols="12" sm="8">  
+          <h2 class="py-5 text-center">Information on {{information[chartIndex].name}}</h2>
+          <v-btn 
+            x-small
+            class="mr-3 mb-5"
+            v-for="(item, index) in information" 
+            :key="index"
+            v-on:click="updateChart(index)">{{information[index].name}}</v-btn>
+          <line-chart 
+            v-if="loaded"
+            class="mb-5 pa-2 box"
+            :chart-data="datacollection" 
+            :options="chartOptions" 
+            :label="information[chartIndex].name"
+            :width="350" 
+            :height="375">
+          </line-chart>
+        </v-col>
+        <v-col sm="4">
+          <h2 class="text-center py-5">Case Data for Duquesne University</h2>
+          <InfoCard/>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -67,7 +71,11 @@
         chartOptions: {
           responsive: true,
           maintainAspectRatio: false,
-          legend: { position: 'bottom', align: 'start' },
+          legend: { 
+            position: 'bottom', 
+            align: 'start', 
+            labels: { boxWidth: 10, fontSize: 12, padding: 10 }
+          },
           plugins: {
             datalabels: { display: false }
           }

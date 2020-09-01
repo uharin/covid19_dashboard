@@ -1,26 +1,30 @@
 <template>
   <div class="pb-5">
-    <h1 class="text-center box">Quarantine and Isolation Information</h1>
-    <v-container class="p-info d-flex flex-row justify-space-around">
-      <!-- <div class="card-chart d-flex flex-column"> -->
-      <v-card height="100%" class="ml-5 mr-4">
-        <v-card-title>{{doughnutChart.title}}</v-card-title>
-        <v-card-subtitle class="pb-0">{{doughnutChart.subtitle}}</v-card-subtitle>
+    <v-container class="pa-0 p-info">
+      <h1 class="text-center box">Quarantine and Isolation Information</h1>
+      <v-row no-gutters class="pa-4 d-flex justify-space-around">
+        <v-col cols="12" sm="4" class="box px-4 pt-4">
+          <h4>{{doughnutChart.title}}</h4>
+          <p class="pb-0">{{doughnutChart.subtitle}}</p>
           <doughnut-chart
             :chart-data="doughnutChart.chartData"
             :options="doughnutChart.options"
-            :label="doughnutChart.chartData.label">
+            :label="doughnutChart.chartData.label"
+            :width="275" 
+            :height="275">
           </doughnut-chart>
-      </v-card>
-      <div class="chart-container">
-        <h2 class="text-center pb-5">Course Sections Offered</h2>
-        <horizontal-bar-chart
-          id="horizontalbar-chart"
-          :chart-data="barChart.chartData"
-          :options="barChart.options"
-          :label="barChart.title">
-        </horizontal-bar-chart>
-      </div>
+        </v-col>
+        <v-col class="mx-5">
+          <h2 class="text-center py-5">Course Sections Offered</h2>
+          <horizontal-bar-chart
+            :chart-data="barChart.chartData"
+            :options="barChart.options"
+            :label="barChart.title"
+            :width="425" 
+            :height="275">
+          </horizontal-bar-chart>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -52,7 +56,7 @@
           // Doughnut Chart Data 
           
           chartData: {
-            labels: ['Percent in Use', 'Percent Available'],
+            labels: ['% in Use', '% Available'],
             datasets: [{
               label:"Isolation and Quarantine",
               hoverBorderWidth: 3,
@@ -71,11 +75,11 @@
             responsive: true,
             maintainAspectRatio: false,
             layout: {
-              padding: { left: 20, right: 20, top: 20, bottom: 30 }
+              padding: { left: 20, right: 20, top: 10, bottom: 30 }
             },
             legend: {
               position: 'bottom',
-              labels: { boxWidth: 15, fontSize: 12, padding: 10}
+              labels: { boxWidth: 10, fontSize: 11, padding: 10}
             },
             plugins: {
               datalabels: { color:'#eee', font: { size: 16 }  }
@@ -105,7 +109,7 @@
                 backgroundColor: ['#D5454F','#D5454F']
               },
               {
-                label:"Entirely Online",
+                label:"100% Online",
                 data: [39, 14],
                 backgroundColor: ['#0F4D96','#0F4D96'],
               }],
@@ -114,8 +118,8 @@
           // Bar Chart Options
 
           options: {
-            responsive: true,
-            maintainAspectRatio: false,
+            responsive: false,
+            maintainAspectRatio: true,
             plugins: {
               datalabels: { color:'#eee', font: { size: 16 } }
             },     
@@ -123,7 +127,9 @@
               xAxes: [{  gridLines: {display: false}, stacked: true  }],
               yAxes: [{  stacked: true,  barThickness: 50 }]
             },
-            legend: { position: 'bottom' }
+            legend: { 
+              position: 'bottom', 
+              labels: { boxWidth: 10, fontSize: 11, padding: 10 }}
           }
         },
       }
@@ -133,8 +139,4 @@
 </script>
 
 <style scoped>
-  .chart-container {
-    width: 482px;
-    height: 376px;
-  }
 </style>
