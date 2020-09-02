@@ -1,6 +1,6 @@
 <template>
   <div class="pb-5">
-    <v-container class="pa-0 p-info">
+    <v-container class="pa-0 box">
       <h1 class="text-center box">On-Campus Testing</h1>
       <v-row no-gutters class="d-flex justify-space-around pa-4">
         <v-col cols="12" sm="4" class="box px-4 pt-4">
@@ -30,7 +30,6 @@
 
   export default {
     name: "TestingPanel",
-
     components: {
       DataTable,
       DoughnutChart
@@ -38,12 +37,12 @@
 
     data: () => {
       return { 
+
+        // Settings for Doughnut Chart
+
         doughnutChart: {
           title: "Since August 1st, 2020",
           subtitle: "On-Campus Testing Only",
-
-          // Doughnut Chart Data 
-
           chartData: {
             labels: ['Total Positive', 'Total Negative'],
             datasets: [{
@@ -56,18 +55,12 @@
               ],
             }]
           },
-          
-          // Doughnut Chart Options 
-          
           options: {
-            cutoutPercentage: 65,
-            responsive: true,
             maintainAspectRatio: false,
             layout: {
               padding: { left: 20, right: 20, top: 10, bottom: 30 }
             },
             legend: {
-              position: 'bottom',
               labels: { boxWidth: 10, fontSize: 11, padding: 10 }
             },
             plugins: {
@@ -75,8 +68,6 @@
             }
           }
         },
-
-        
       }
     }
   }

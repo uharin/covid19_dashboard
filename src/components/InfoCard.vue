@@ -6,7 +6,7 @@
       min-width="250" 
       max-width="325" 
       class="mx-auto mb-5">
-      <v-list-item class="duq-blue">
+      <v-list-item class="secondary">
         <v-list-item-content class="off-white pb-0">
           <h3 class="text-center">{{item.title}}</h3>
           <div class="d-flex justify-space-around">
@@ -82,10 +82,5 @@ export default {
 };
 </script>
 <style scoped>
-  .duq-blue {
-    background-color: #0F4D96;
-  }
-  .off-white {
-    color: #eee;
-  }
+  
 </style>

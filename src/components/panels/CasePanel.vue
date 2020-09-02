@@ -1,6 +1,6 @@
 <template>
   <div class="py-5">
-    <v-container class="p-info pa-0">
+    <v-container class="box pa-0">
       <h1 class="text-center box">Campus Case Tracker</h1>
       <v-row no-gutters class="d-flex justify-space-around pa-4">
         <v-col cols="12" sm="8">  
@@ -36,7 +36,6 @@
   import axios from 'axios';
   import moment from 'moment';
 
-
   export default {
     name: "CasePanel",
 
@@ -51,28 +50,14 @@
         datacollection: {},
         loaded: false,
         information: [
-          {
-            name: "Positive Cases",
-            arrayInfo: []
-          },
-          {
-            name: "Hospitalized",
-            arrayInfo: []
-          },
-          {
-            name: "Recovered",
-            arrayInfo: []
-          },
-          {
-            name: "Deaths",
-            arrayInfo: []
-          }
+          { name: "Positive Cases", arrayInfo:[] },
+          { name: "Hospitalized", arrayInfo:[] },
+          { name: "Recovered", arrayInfo: [] },
+          { name: "Deaths", arrayInfo: [] }
         ],
         chartOptions: {
-          responsive: true,
           maintainAspectRatio: false,
           legend: { 
-            position: 'bottom', 
             align: 'start', 
             labels: { boxWidth: 10, fontSize: 12, padding: 10 }
           },
@@ -85,8 +70,8 @@
 
     async created(){
       const { data } = await axios.get("https://api.covidtracking.com/us/daily");
-
       const dataPa = await axios.get("https://api.covidtracking.com/v1/states/pa/current.json");
+      
       const clonePaData = {...dataPa.data}
 
       data.forEach(d => {
@@ -121,7 +106,7 @@
           labels: dates,
 					datasets: [{
 							label: name,
-							data: totals,
+              data: totals,
 							borderColor: '#d2dae2',
 							backgroundColor: '#D5454F',
 							pointBackgroundColor: 'white',
@@ -129,7 +114,6 @@
 							pointBorderColor: '#d2dae2'
 					}],
         }
-        console.dir(this.datacollection);
       },
       
       updateChart(index) {
@@ -137,10 +121,5 @@
         this.fillData();
       }
     }
-     
   }
-
 </script>
-
-<style scoped>
-</style>

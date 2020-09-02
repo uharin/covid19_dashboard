@@ -1,6 +1,6 @@
 <template>
   <div class="pb-5">
-    <v-container class="pa-0 p-info">
+    <v-container class="pa-0 box">
       <h1 class="text-center box">Quarantine and Isolation Information</h1>
       <v-row no-gutters class="pa-4 d-flex justify-space-around">
         <v-col cols="12" sm="4" class="box px-4 pt-4">
@@ -44,17 +44,33 @@
 
     data: () => {
       return { 
+        
+        sharedOptions: {
+          maintainAspectRatio: false,
+          plugins: {
+            datalabels: { color:'#eee', font: { size: 16 } }
+          },     
+          legend: { 
+            labels: { boxWidth: 10, fontSize: 11, padding: 10 }
+          }
+        },
 
-        // ========================================= //
-        // DOUGHNUT CHART INFO
-        // ========================================= //
+        doughnutOptions: {
+          layout: {
+            padding: { left: 20, right: 20, top: 10, bottom: 30 }
+          },
+        },
 
+        barOptions: {
+          scales: {
+            xAxes: [{  gridLines: {display: false}, stacked: true  }],
+            yAxes: [{  stacked: true,  barThickness: 50 }]
+          },
+        },
+        
         doughnutChart: {
           title: "Isolation and Quarantine",
           subtitle: "Designated Space on Campus",
-
-          // Doughnut Chart Data 
-          
           chartData: {
             labels: ['% in Use', '% Available'],
             datasets: [{
@@ -67,39 +83,13 @@
               ],
             }],
           },
-          
-          // Doughnut Chart Options 
-          
-          options: {
-            cutoutPercentage: 65,
-            responsive: true,
-            maintainAspectRatio: false,
-            layout: {
-              padding: { left: 20, right: 20, top: 10, bottom: 30 }
-            },
-            legend: {
-              position: 'bottom',
-              labels: { boxWidth: 10, fontSize: 11, padding: 10}
-            },
-            plugins: {
-              datalabels: { color:'#eee', font: { size: 16 }  }
-            }
-          },
+          options: null
         },
-
-
-
-        // ========================================= //
-        // BAR CHART INFO
-        // ========================================= //
 
         barChart: {
           title: "Since August 1st, 2020",
           subtitle: "On-Campus Testing Only",
           maxBarThickness: 4,
-          
-          // Bar Chart Data 
-
           chartData: {
             labels: ['Undergraduate', 'Graduate/Professional'],
             datasets: 
@@ -113,30 +103,20 @@
                 data: [39, 14],
                 backgroundColor: ['#0F4D96','#0F4D96'],
               }],
+            options: null
           },
-
-          // Bar Chart Options
-
-          options: {
-            responsive: false,
-            maintainAspectRatio: true,
-            plugins: {
-              datalabels: { color:'#eee', font: { size: 16 } }
-            },     
-            scales: {
-              xAxes: [{  gridLines: {display: false}, stacked: true  }],
-              yAxes: [{  stacked: true,  barThickness: 50 }]
-            },
-            legend: { 
-              position: 'bottom', 
-              labels: { boxWidth: 10, fontSize: 11, padding: 10 }}
-          }
         },
       }
+    },
+    methods: {
+      chartOptions(){
+        this.barChart.options = {...this.sharedOptions, ...this.barOptions};
+        this.doughnutChart.options = {...this.sharedOptions, ...this.doughnutOptions};
+      }
+    },
+    
+    created(){
+      this.chartOptions();
     }
   }
-
 </script>
-
-<style scoped>
-</style>
